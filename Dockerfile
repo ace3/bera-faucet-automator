@@ -1,18 +1,6 @@
 # Use Node.js version 18 official image
 FROM node:18
 
-# Set working directory in the container
-WORKDIR /app
-
-# Copy package.json and package-lock.json (if available)
-COPY package*.json ./
-
-# Install dependencies (including Puppeteer)
-RUN yarn
-
-# Copy the Puppeteer script and .env file into the container
-COPY . ./
-
 # Install Chromium dependencies for Puppeteer
 RUN apt-get update && apt-get install -y \
   gconf-service \
@@ -54,8 +42,18 @@ RUN apt-get update && apt-get install -y \
   xdg-utils \
   wget
 
-# Expose port (optional)
-EXPOSE 3000
+
+# Set working directory in the container
+WORKDIR /app
+
+# Copy package.json and package-lock.json (if available)
+COPY package*.json ./
+
+# Install dependencies (including Puppeteer)
+RUN yarn
+
+# Copy the Puppeteer script and .env file into the container
+COPY . ./
 
 # Command to run the script
-CMD ["node", "index.js"]
+CMD ["node", "/app/index.js"]
