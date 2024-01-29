@@ -2,6 +2,6 @@ version: '3'
 services:
   puppeteer-script:
     build: .
-    volumes:
-      - ./:/app
+    # volumes:
+    #   - ./:/app
     restart: unless-stopped
