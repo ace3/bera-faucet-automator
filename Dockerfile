@@ -1,4 +1,4 @@
-FROM --platform=linux/arm64 node:18
+FROM --platform=linux/amd64 node:18
 
 # We don't need the standalone Chromium
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD false
@@ -11,7 +11,7 @@ WORKDIR /app
 
 RUN apt-get update && apt-get install gnupg wget -y && \
   wget --quiet --output-document=- https://dl-ssl.google.com/linux/linux_signing_key.pub | gpg --dearmor > /etc/apt/trusted.gpg.d/google-archive.gpg && \
-  sh -c 'echo "deb [arch=arm64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list' && \
+  sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list' && \
   apt-get update && \
   apt-get install chromium -y --no-install-recommends && \
   rm -rf /var/lib/apt/lists/*
@@ -25,12 +25,9 @@ COPY yarn.lock ./
 # Install dependencies (including Puppeteer)
 RUN yarn
 
-RUN yarn add puppeteer
-
-RUN ls -lah
+RUN yarn add puppeteer dotenv
 
 # Copy the Puppeteer script and .env file into the container
 COPY . ./
-RUN ls -lah
 # Command to run the script
-# CMD ["node", "index.js"]
+CMD ["node", "index.js"]
