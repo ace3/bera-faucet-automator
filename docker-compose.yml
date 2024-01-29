@@ -1,6 +1,7 @@
 version: '3'
 services:
   puppeteer-script:
+    platform: linux/arm64
     build: .
     environment:
       - NODE_ENV=production
