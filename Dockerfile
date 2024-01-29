@@ -27,8 +27,10 @@ RUN yarn
 
 RUN yarn add puppeteer
 
-# # Copy the Puppeteer script and .env file into the container
-# COPY . ./
+RUN ls -lah
 
+# Copy the Puppeteer script and .env file into the container
+COPY . ./
+RUN ls -lah
 # Command to run the script
 CMD ["node", "index.js"]
