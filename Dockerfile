@@ -8,7 +8,7 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install dependencies (including Puppeteer)
-RUN npm install
+RUN yarn
 
 # Copy the Puppeteer script and .env file into the container
 COPY . ./
