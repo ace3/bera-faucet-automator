@@ -49,11 +49,15 @@ WORKDIR /app
 # Copy package.json and package-lock.json (if available)
 COPY package*.json ./
 
+COPY yarn.lock ./
+
 # Install dependencies (including Puppeteer)
 RUN yarn
+
+RUN yarn add puppeteer
 
 # Copy the Puppeteer script and .env file into the container
 COPY . ./
 
 # Command to run the script
-CMD ["node", "/app/index.js"]
+CMD ["node", "index.js"]
