@@ -33,4 +33,4 @@ RUN ls -lah
 COPY . ./
 RUN ls -lah
 # Command to run the script
-CMD ["node", "index.js"]
+# CMD ["node", "index.js"]
