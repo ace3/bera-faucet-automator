@@ -2,9 +2,14 @@ const puppeteer = require('puppeteer')
 
 ;(async () => {
   const browser = await puppeteer.launch({
-    headless: true,
+    headless: 'new',
     executablePath: '/usr/bin/chromium',
-    args: ['--no-sandbox', '--disable-setuid-sandbox'],
+    args: [
+      '--no-sandbox',
+      '--disable-setuid-sandbox',
+      '--no-zygote',
+      '--single-process',
+    ],
   })
   const page = await browser.newPage()
   const address =
