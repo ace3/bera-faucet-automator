@@ -24,7 +24,7 @@ const puppeteer = require('puppeteer')
   await page.click('#terms')
 
   // Wait for 2 seconds
-  await new Promise((r) => setTimeout(r, 2000))
+  await new Promise((r) => setTimeout(r, 20000))
 
   // Submit the button
   await page.click(
@@ -32,7 +32,7 @@ const puppeteer = require('puppeteer')
   )
 
   await // Wait for 1 second
-  new Promise((r) => setTimeout(r, 2000))
+  new Promise((r) => setTimeout(r, 20000))
   // Fill the input
   await page.type(
     'body > div:nth-child(12) > div.relative.flex.min-h-screen.w-full.flex-col.overflow-hidden.bg-background > main > div > div.flex.w-full.flex-col-reverse.items-center.justify-between.py-12.xl\\:flex-row > div > div.flex.flex-col.gap-1 > div.relative > div > input',
@@ -40,7 +40,7 @@ const puppeteer = require('puppeteer')
   )
 
   // Wait for 1 second
-  await new Promise((r) => setTimeout(r, 1000))
+  await new Promise((r) => setTimeout(r, 10000))
 
   // Click to prove not a robot
   await page.click(
@@ -48,13 +48,13 @@ const puppeteer = require('puppeteer')
   )
 
   // Wait for 3 seconds
-  await new Promise((r) => setTimeout(r, 5000))
+  await new Promise((r) => setTimeout(r, 20000))
 
   // Click to drip the token
   await page.click(
     'body > div:nth-child(12) > div.relative.flex.min-h-screen.w-full.flex-col.overflow-hidden.bg-background > main > div > div.flex.w-full.flex-col-reverse.items-center.justify-between.py-12.xl\\:flex-row > div > button'
   )
-  await new Promise((r) => setTimeout(r, 3000))
+  await new Promise((r) => setTimeout(r, 20000))
   // Close the browser
   await browser.close()
 })()
