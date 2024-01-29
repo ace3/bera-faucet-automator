@@ -2,8 +2,8 @@ const puppeteer = require('puppeteer')
 
 ;(async () => {
   const browser = await puppeteer.launch({
-    headless: 'new',
-    executablePath: '/usr/bin/chromium',
+    headless: false,
+    executablePath: '/usr/bin/chromium-browser',
     args: [
       '--no-sandbox',
       '--disable-setuid-sandbox',
@@ -12,8 +12,8 @@ const puppeteer = require('puppeteer')
     ],
   })
   const page = await browser.newPage()
-  const address =
-    process.env.ADDRESS || '0xF3318001A64C457AC358b0eE829791F0600673DD'
+  const address = process.env.ADDRESS
+  console.log(address)
 
   await page.setViewport({ width: 1366, height: 768 })
   // Open the URL
