@@ -1,7 +1,11 @@
 const puppeteer = require('puppeteer')
 
 ;(async () => {
-  const browser = await puppeteer.launch({ headless: false })
+  const browser = await puppeteer.launch({
+    headless: false,
+    executablePath: '/usr/bin/chromium',
+    args: ['--no-sandbox', '--disable-setuid-sandbox'],
+  })
   const page = await browser.newPage()
   const address =
     process.env.ADDRESS || '0xF3318001A64C457AC358b0eE829791F0600673DD'
