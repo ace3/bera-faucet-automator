@@ -10,12 +10,16 @@ WORKDIR /app
 # Note: this installs the necessary libs to make the browser work with Puppeteer.
 
 RUN apt-get update
+run apt-get upgrade
 RUN apt-get install gnupg -y
 RUN apt-get install wget -y
-RUN wget --quiet --output-document=- https://dl-ssl.google.com/linux/linux_signing_key.pub | gpg --dearmor > /etc/apt/trusted.gpg.d/google-archive.gpg
-RUN sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
-RUN apt-get update
-RUN apt  install google-chrome-beta -y
+RUN apt-get install curl -y
+RUN apt install apt-transport-https curl -y
+RUN curl -fSsL https://dl.google.com/linux/linux_signing_key.pub | sudo gpg --dearmor | sudo tee /usr/share/keyrings/google-chrome.gpg >> /dev/null
+RUN echo deb [arch=amd64 signed-by=/usr/share/keyrings/google-chrome.gpg] http://dl.google.com/linux/chrome/deb/ stable main | sudo tee /etc/apt/sources.list.d/google-chrome.list
+RUN apt install google-chrome-stable
+# RUN apt-get update
+# RUN apt  install google-chrome-beta -y
 RUN rm -rf /var/lib/apt/lists/*
 
 
