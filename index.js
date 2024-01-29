@@ -15,6 +15,7 @@ const puppeteer = require('puppeteer')
   const address =
     process.env.ADDRESS || '0xF3318001A64C457AC358b0eE829791F0600673DD'
 
+  await page.setViewport({ width: 1366, height: 768 })
   // Open the URL
   await page.goto('https://artio.faucet.berachain.com/', {
     waitUntil: 'networkidle0',
