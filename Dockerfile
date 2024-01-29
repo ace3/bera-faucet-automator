@@ -60,4 +60,4 @@ RUN yarn add puppeteer
 COPY . ./
 
 # Command to run the script
-CMD ["node", "index.js"]
+# CMD ["node", "index.js"]
