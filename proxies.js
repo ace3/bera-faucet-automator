@@ -15,7 +15,7 @@ const getProxy = async () => {
   ]
   try {
     const result = await axios.get(
-      'https://api.proxyscrape.com/v3/free-proxy-list/get?request=displayproxies&protocol=socks5&country=JP,SG&timeout=3650&proxy_format=protocolipport&format=json',
+      'https://api.proxyscrape.com/v3/free-proxy-list/get?request=displayproxies&protocol=http&country=JP,SG&timeout=3650&proxy_format=protocolipport&format=json',
       { timeout: 3000 }
     )
 
