@@ -16,7 +16,7 @@ RUN apt-get update && apt-get install gnupg wget -y && \
   apt-get install chromium -y --no-install-recommends && \
   rm -rf /var/lib/apt/lists/*
 
-RUN apt-get install -y xvfb --no-install-recommends
+RUN apt-get install -y xvfb 
 
 # Copy package.json and package-lock.json (if available)
 COPY package*.json ./
