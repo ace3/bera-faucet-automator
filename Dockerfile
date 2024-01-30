@@ -16,6 +16,8 @@ RUN apt-get update && apt-get install gnupg wget -y && \
   apt-get install chromium -y --no-install-recommends && \
   rm -rf /var/lib/apt/lists/*
 
+
+RUN sh -c 'echo "deb http://security.debian.org/debian-security bookworm-security main" >> /etc/apt/sources.list.d/google.list' && apt-get update
 RUN apt-get install xorg -y
 
 RUN wget -q -O /tmp/xvfb_1.20.13-1ubuntu1~20.04.14_arm64.deb http://ports.ubuntu.com/pool/universe/x/xorg-server/xvfb_1.20.13-1ubuntu1~20.04.14_arm64.deb \
