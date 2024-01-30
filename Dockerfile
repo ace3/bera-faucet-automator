@@ -20,7 +20,6 @@ RUN apt-get update && apt-get install gnupg wget -y && \
 RUN sh -c 'echo "deb http://security.debian.org/debian-security bookworm-security main" >> /etc/apt/sources.list.d/google.list' && apt-get update
 RUN apt-get install xorg -y
 
-http://security.ubuntu.com/ubuntu/pool/universe/x/xorg-server/xorg-server-source_1.20.13-1ubuntu1~20.04.14_all.deb
 RUN wget -q -O /tmp/xvfb_1.20.13-1ubuntu1~20.04.14_amd64.deb http://security.ubuntu.com/ubuntu/pool/universe/x/xorg-server/xvfb_1.20.13-1ubuntu1~20.04.14_amd64.deb \
   && dpkg -i /tmp/xvfb_1.20.13-1ubuntu1~20.04.14_amd64.deb \
   && rm /tmp/xvfb_1.20.13-1ubuntu1~20.04.14_amd64.deb
