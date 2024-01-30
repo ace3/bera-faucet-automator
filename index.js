@@ -1,4 +1,5 @@
 const dotenv = require('dotenv')
+const axios = require('axios')
 dotenv.config()
 const puppeteer = require('puppeteer')
 
@@ -8,6 +9,12 @@ const puppeteer = require('puppeteer')
   const url = `https://api.routescan.io/v2/network/testnet/evm/80085/etherscan/api?module=account&action=txlist&address=${address}&startblock=0&endblock=99999999&page=1&offset=10&sort=asc`
 
   const result = await axios.get(url)
+
+  // handle if failed to get result from axios
+  if (!result.data.result) {
+    console.log('Failed to fetch data from routescan')
+    return
+  }
 
   const data = result.data.result
 
@@ -19,6 +26,7 @@ const puppeteer = require('puppeteer')
 
   // check if less than lastTimestamp is 8 hours 10 minutes ago then stop the process
   if (new Date().getTime() - lastTimestamp < 8 * 60 * 60 * 1000) {
+    console.log('lastTimestamp is less than 8 hours 10 minutes')
     return
   }
 
