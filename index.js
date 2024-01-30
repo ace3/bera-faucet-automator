@@ -62,7 +62,9 @@ const puppeteer = require('puppeteer')
     'body > div:nth-child(12) > div.relative.flex.min-h-screen.w-full.flex-col.overflow-hidden.bg-background > main > div > div.flex.w-full.flex-col-reverse.items-center.justify-between.py-12.xl\\:flex-row > div > button'
   )
   console.log('Drip the token')
+
   await new Promise((r) => setTimeout(r, 5000))
+  await page.screenshot({ path: 'fullpage.png', fullPage: true })
   // Close the browser
   await browser.close()
 })()
