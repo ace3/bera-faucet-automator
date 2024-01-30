@@ -24,6 +24,8 @@ const puppeteer = require('puppeteer')
     lastTimestamp = data[0].timeStamp
   }
 
+  console.log(`Last Timestamp: ${lastTimestamp}`)
+  console.log(`Current Timestamp : ${new Date().getTime()}`)
   // check if less than lastTimestamp is 8 hours 10 minutes ago then stop the process
   if (new Date().getTime() - lastTimestamp < 8 * 60 * 60 * 1000) {
     console.log('lastTimestamp is less than 8 hours 10 minutes')
