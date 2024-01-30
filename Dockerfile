@@ -1,7 +1,7 @@
 FROM --platform=linux/arm64 node:18
 
 # We don't need the standalone Chromium
-ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD false
+ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
 
 # Set working directory in the container
 WORKDIR /app
@@ -16,6 +16,7 @@ RUN apt-get update && apt-get install gnupg wget -y && \
   apt-get install chromium -y --no-install-recommends && \
   rm -rf /var/lib/apt/lists/*
 
+RUN apt-get install -y xvfb --no-install-recommends
 
 # Copy package.json and package-lock.json (if available)
 COPY package*.json ./
