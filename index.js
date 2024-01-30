@@ -4,7 +4,7 @@ const puppeteer = require('puppeteer')
 
 ;(async () => {
   const browser = await puppeteer.launch({
-    headless: 'new',
+    headless: false,
     executablePath: 'chromium',
     args: [
       '--no-sandbox',
