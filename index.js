@@ -6,7 +6,7 @@ const puppeteer = require('puppeteer')
 ;(async () => {
   const address = process.env.ADDRESS
 
-  const url = `https://api.routescan.io/v2/network/testnet/evm/80085/etherscan/api?module=account&action=txlist&address=${address}&startblock=0&endblock=99999999&page=1&offset=10&sort=asc`
+  const url = `https://api.routescan.io/v2/network/testnet/evm/80085/etherscan/api?module=account&action=txlist&address=${address}&startblock=0&endblock=99999999&page=1&offset=10&sort=desc`
 
   const result = await axios.get(url)
 
