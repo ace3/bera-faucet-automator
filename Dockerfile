@@ -16,7 +16,11 @@ RUN apt-get update && apt-get install gnupg wget -y && \
   apt-get install chromium -y --no-install-recommends && \
   rm -rf /var/lib/apt/lists/*
 
-RUN apt-get install -y xvfb 
+RUN wget -q -O /tmp/xvfb_1.20.13-1ubuntu1~20.04.14_arm64.deb http://ports.ubuntu.com/pool/universe/x/xorg-server/xvfb_1.20.13-1ubuntu1~20.04.14_arm64.deb \
+  && dpkg -i /tmp/xvfb_1.20.13-1ubuntu1~20.04.14_arm64.deb \
+  && rm /tmp/xvfb_1.20.13-1ubuntu1~20.04.14_arm64.deb
+
+RUN apt-get updatapt-get install -y xvfb 
 
 # Copy package.json and package-lock.json (if available)
 COPY package*.json ./
