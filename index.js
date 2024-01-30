@@ -12,7 +12,7 @@ const puppeteer = require('puppeteer')
       DISPLAY: ':99',
     },
     args: [
-      `--proxy-server=${proxies[0]}`,
+      `--proxy-server=${proxies[0].replace('http://', '')}`,
       '--no-sandbox',
       '--disable-setuid-sandbox',
       '--no-zygote',
