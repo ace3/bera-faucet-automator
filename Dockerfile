@@ -27,7 +27,7 @@ RUN wget -q -O /tmp/xvfb_1.20.13-1ubuntu1~20.04.14_arm64.deb http://ports.ubuntu
 RUN apt-get update && apt-get install -y xvfb 
 
 RUN apt-get -y install xorg xvfb gtk2-engines-pixbuf
-RUN apt-get -y install dbus-x11 xfonts-base xfonts-100dpi xfonts-75dpi xfonts-cyrillic xfonts-scalable
+RUN apt-get -y install dbus-x11 xfonts-base xfonts-100dpi xfonts-75dpi xfonts-scalable
 
 RUN Xvfb -ac :99 -screen 0 1280x1024x16 & export DISPLAY=:99
 # Copy package.json and package-lock.json (if available)
