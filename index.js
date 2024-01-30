@@ -3,6 +3,25 @@ dotenv.config()
 const puppeteer = require('puppeteer')
 
 ;(async () => {
+  const address = process.env.ADDRESS
+
+  const url = `https://api.routescan.io/v2/network/testnet/evm/80085/etherscan/api?module=account&action=txlist&address=${address}&startblock=0&endblock=99999999&page=1&offset=10&sort=asc`
+
+  const result = await axios.get(url)
+
+  const data = result.data.result
+
+  let lastTimestamp = 0
+
+  if (data.length > 0) {
+    lastTimestamp = data[0].timeStamp
+  }
+
+  // check if less than lastTimestamp is 8 hours 10 minutes ago then stop the process
+  if (new Date().getTime() - lastTimestamp < 8 * 60 * 60 * 1000) {
+    return
+  }
+
   const browser = await puppeteer.launch({
     headless: 'new',
     executablePath: 'chromium',
@@ -17,7 +36,6 @@ const puppeteer = require('puppeteer')
     ],
   })
   const page = await browser.newPage()
-  const address = process.env.ADDRESS
 
   console.log(`Address Recipient: ${address}`)
 
