@@ -3,6 +3,8 @@ const { getProxy } = require('./proxies')
 dotenv.config()
 const puppeteer = require('puppeteer')
 
+const { proxyRequest } = require('puppeteer-proxy')
+
 ;(async () => {
   const proxies = await getProxy()
   const browser = await puppeteer.launch({
@@ -12,7 +14,6 @@ const puppeteer = require('puppeteer')
       DISPLAY: ':99',
     },
     args: [
-      `--proxy-server=${proxies[0]}`,
       '--no-sandbox',
       '--disable-setuid-sandbox',
       '--no-zygote',
@@ -20,6 +21,17 @@ const puppeteer = require('puppeteer')
     ],
   })
   const page = await browser.newPage()
+
+  await page.setRequestInterception(true)
+
+  page.on('request', async (request) => {
+    await proxyRequest({
+      page,
+      proxyUrl: proxies[0],
+      request,
+    })
+  })
+
   const address = process.env.ADDRESS
 
   console.log(`Address Recipient: ${address}`)
