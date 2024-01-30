@@ -16,7 +16,7 @@ RUN apt-get update && apt-get install gnupg wget -y && \
   apt-get install chromium -y --no-install-recommends && \
   rm -rf /var/lib/apt/lists/*
 
-RUN apt-get install xserver-common libunwind8 libxfont2 xauth x11-xkb-utils -y
+RUN apt-get install xorg -y
 
 RUN wget -q -O /tmp/xvfb_1.20.13-1ubuntu1~20.04.14_arm64.deb http://ports.ubuntu.com/pool/universe/x/xorg-server/xvfb_1.20.13-1ubuntu1~20.04.14_arm64.deb \
   && dpkg -i /tmp/xvfb_1.20.13-1ubuntu1~20.04.14_arm64.deb \
