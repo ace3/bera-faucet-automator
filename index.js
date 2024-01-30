@@ -1,8 +1,10 @@
 const dotenv = require('dotenv')
+const { getProxy } = require('./proxies')
 dotenv.config()
 const puppeteer = require('puppeteer')
 
 ;(async () => {
+  const proxies = await getProxy()
   const browser = await puppeteer.launch({
     headless: 'new',
     executablePath: 'chromium',
@@ -10,6 +12,7 @@ const puppeteer = require('puppeteer')
       DISPLAY: ':99',
     },
     args: [
+      `--proxy-server=${proxies[0]}`,
       '--no-sandbox',
       '--disable-setuid-sandbox',
       '--no-zygote',
