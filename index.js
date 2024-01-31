@@ -97,6 +97,28 @@ const puppeteer = require('puppeteer')
 
   await new Promise((r) => setTimeout(r, 5000))
   await page.screenshot({ path: 'fullpage.png', fullPage: true })
+
+  // Replace with your file path
+  const filePath = './fullpage.png'
+
+  // Read the file from the file system
+  const file = fs.readFileSync(filePath)
+
+  axios({
+    method: 'post',
+    url: 'https://transfer.sh/fullpage.png',
+    data: file,
+    headers: {
+      'Content-Type': 'application/octet-stream',
+    },
+  })
+    .then((response) => {
+      console.log('File uploaded successfully. Response:', response.data)
+    })
+    .catch((error) => {
+      console.error('Error uploading file:', error)
+    })
+
   // Close the browser
   await browser.close()
 })()
