@@ -1,6 +1,7 @@
 const dotenv = require('dotenv')
 const axios = require('axios')
 const fs = require('fs')
+const path = require('path')
 dotenv.config()
 const puppeteer = require('puppeteer')
 
