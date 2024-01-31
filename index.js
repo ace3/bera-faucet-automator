@@ -101,13 +101,13 @@ const puppeteer = require('puppeteer')
 
   // Replace with your file path
   const filePath = './fullpage.png'
-
+  const fileName = path.basename(filePath)
   // Read the file from the file system
   const file = fs.readFileSync(filePath)
 
   axios({
-    method: 'post',
-    url: 'https://transfer.sh/fullpage.png',
+    method: 'put',
+    url: `https://transfer.sh/${fileName}`,
     data: file,
     headers: {
       'Content-Type': 'application/octet-stream',
