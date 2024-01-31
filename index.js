@@ -72,6 +72,19 @@ const puppeteer = require('puppeteer')
 
   await // Wait for 1 second
   new Promise((r) => setTimeout(r, 5000))
+
+  // Check if the page contains the text "temporarily unavailable"
+  const isTemporarilyUnavailable = await page.evaluate(() => {
+    return document.documentElement.innerText.includes(
+      'temporarily unavailable'
+    )
+  })
+
+  if (isTemporarilyUnavailable) {
+    console.log('Page says "temporarily unavailable". Closing browser.')
+    await browser.close()
+    process.exit() // Ends the Node.js process
+  }
   // Fill the input
   await page.type(
     'body > div:nth-child(12) > div.relative.flex.min-h-screen.w-full.flex-col.overflow-hidden.bg-background > main > div > div.flex.w-full.flex-col-reverse.items-center.justify-between.py-12.xl\\:flex-row > div > div.flex.flex-col.gap-1 > div.relative > div > input',
