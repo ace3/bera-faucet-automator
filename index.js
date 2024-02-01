@@ -38,9 +38,9 @@ const puppeteer = require('puppeteer')
   const browser = await puppeteer.launch({
     headless: 'new',
     executablePath: 'chromium',
-    env: {
-      DISPLAY: ':99',
-    },
+    // env: {
+    //   DISPLAY: ':99',
+    // },
     args: [
       '--no-sandbox',
       '--disable-setuid-sandbox',
